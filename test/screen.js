@@ -2,7 +2,7 @@ var robot = require('..');
 var pixelColor, screenSize;
 
 describe('Screen', () => {
-  it('Get pixel color.', function()
+  xit('Get pixel color.', function()
   {
     expect(pixelColor = robot.getPixelColor(5, 5)).toBeTruthy();
     expect(pixelColor !== undefined).toBeTruthy();
@@ -30,10 +30,14 @@ describe('Screen', () => {
     }).toThrowError(/Invalid number/);
   });
 
-  it('Get screen size.', function()
+  xit('Get screen size.', function()
   {
     expect(screenSize = robot.getScreenSize()).toBeTruthy();
     expect(screenSize.width !== undefined).toBeTruthy();
     expect(screenSize.height !== undefined).toBeTruthy();
+  });
+
+  it('My Test', function () {
+    robot.screen.captureToFile('d:\\local.bmp');
   });
 });

@@ -10,7 +10,7 @@ export interface Bitmap {
 
 export interface Screen {
   capture(x?: number, y?: number, width?: number, height?: number): Bitmap
-  save(screen: Bitmap, path: string): Promise<void>
+  captureToFile(path: string): void
 }
 
 export function setKeyboardDelay(ms: number): void

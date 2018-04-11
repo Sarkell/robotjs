@@ -7,7 +7,7 @@
   "scripts": {
     "test": "run-script-os",
     "test:darwin:linux": "jasmine 'test/**/*.js'",
-    "test:win32": "jasmine test/**/*.js",
+    "test:win32": "jasmine test/screen.js",
     "install": "prebuild-install || node-gyp rebuild",
     "prebuild": "prebuild --all"
   },
@@ -40,7 +40,6 @@
   },
   "homepage": "https://github.com/octalmage/robotjs",
   "dependencies": {
-    "jimp": "^0.2.28",
     "nan": "^2.2.1",
     "prebuild-install": "^2.1.1"
   },

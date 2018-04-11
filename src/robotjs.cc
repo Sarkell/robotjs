@@ -3,6 +3,7 @@
 #include <v8.h>
 #include <vector>
 #include "mouse.h"
+#include "bmp_io.h"
 #include "deadbeef_rand.h"
 #include "keypress.h"
 #include "screen.h"
@@ -738,6 +739,29 @@ NAN_METHOD(captureScreen)
 	info.GetReturnValue().Set(obj);
 }
 
+NAN_METHOD(captureScreenToFile)
+{
+	size_t x;
+	size_t y;
+	size_t w;
+	size_t h;
+	char *str;
+	Nan::Utf8String string(info[0]);
+	str = *string;
+
+	//We're getting the full screen.
+	x = 0;
+	y = 0;
+
+	//Get screen size.
+	MMSize displaySize = getMainDisplaySize();
+	w = displaySize.width;
+	h = displaySize.height;
+
+	MMBitmapRef bitmap = copyMMBitmapFromDisplayInRect(MMRectMake(x, y, w, h));
+	saveMMBitmapAsBMP(bitmap, str);
+}
+
 /*
  ____  _ _
 | __ )(_) |_ _ __ ___   __ _ _ __
@@ -861,6 +885,9 @@ NAN_MODULE_INIT(InitAll)
 
 	Nan::Set(target, Nan::New("captureScreen").ToLocalChecked(),
 		Nan::GetFunction(Nan::New<FunctionTemplate>(captureScreen)).ToLocalChecked());
+
+	Nan::Set(target, Nan::New("captureScreenToFile").ToLocalChecked(),
+		Nan::GetFunction(Nan::New<FunctionTemplate>(captureScreenToFile)).ToLocalChecked());
 
 	Nan::Set(target, Nan::New("getColor").ToLocalChecked(),
 		Nan::GetFunction(Nan::New<FunctionTemplate>(getColor)).ToLocalChecked());
