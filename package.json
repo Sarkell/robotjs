@@ -7,7 +7,7 @@
   "scripts": {
     "test": "run-script-os",
     "test:darwin:linux": "jasmine 'test/**/*.js'",
-    "test:win32": "jasmine test/screen.js",
+    "test:win32": "jasmine test/**/*.js",
     "install": "prebuild-install || node-gyp rebuild",
     "prebuild": "prebuild --all"
   },
